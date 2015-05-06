@@ -51,7 +51,7 @@ bool CCar::TurnOffEngine()
 	else if (m_isWorking && m_currentSpeed == 0 && m_directionOfMovement == STAND && m_currentTransmission == 0)
 	{
 		m_isWorking = false;
-		return m_isWorking;
+		return !m_isWorking;
 	}
 	else
 	{
@@ -78,9 +78,11 @@ bool CCar::SetGear(const int gear)
 		}
 		break;
 	case 0:
-		m_currentTransmission = gear; //???
+		m_currentTransmission = gear;
 		if (m_currentSpeed == 0)
+		{
 			m_directionOfMovement = STAND;
+		}		
 		return true;
 	case 1:
 		if ((IsSpeedInRange(1, m_currentSpeed) && m_currentTransmission >= 1) ||
@@ -146,9 +148,13 @@ bool CCar::SetSpeed(const int speed)
 		{
 			m_currentSpeed = speed;
 			if (speed == 0)
+			{
 				m_directionOfMovement = STAND;
+			}			
 			else
+			{
 				m_directionOfMovement = FORWARD;
+			}		
 			return true;
 		}
 		else
@@ -161,9 +167,13 @@ bool CCar::SetSpeed(const int speed)
 		{
 			m_currentSpeed = speed;
 			if (speed == 0)
+			{
 				m_directionOfMovement = STAND;
+			}	
 			else
+			{
 				m_directionOfMovement = FORWARD;
+			}	
 			return true;
 		}
 		break;

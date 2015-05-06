@@ -19,15 +19,13 @@ BOOST_AUTO_TEST_CASE(EngineOffByDefault)
 
 BOOST_AUTO_TEST_CASE(TurnOnEngine)
 {
-	//car.TurnOnEngine();
 	BOOST_CHECK_EQUAL(car.TurnOnEngine(), true);
 }
 
 BOOST_AUTO_TEST_CASE(TurnOffEngine)
 {
 	car.TurnOnEngine();
-	//car.TurnOffEngine();
-	BOOST_CHECK_EQUAL(car.TurnOffEngine(), false);
+	BOOST_CHECK_EQUAL(car.TurnOffEngine(), true);
 }
 
 BOOST_AUTO_TEST_CASE(NeutralGearByDefault)
@@ -95,7 +93,7 @@ BOOST_AUTO_TEST_CASE(CanRideBackStopAndTurnOff)
 	car.SetSpeed(10);
 	car.SetGear(0);
 	car.SetSpeed(0);
-	BOOST_CHECK(!car.TurnOffEngine());
+	BOOST_CHECK(car.TurnOffEngine());
 }
 
 BOOST_AUTO_TEST_CASE(CanRideForwardStopAndTurnOff)
@@ -107,7 +105,7 @@ BOOST_AUTO_TEST_CASE(CanRideForwardStopAndTurnOff)
 	car.SetSpeed(40);
 	car.SetGear(0);
 	car.SetSpeed(0);
-	BOOST_CHECK(!car.TurnOffEngine());
+	BOOST_CHECK(car.TurnOffEngine());
 }
 
 BOOST_AUTO_TEST_CASE(CanSwitchOntoNeutralWhenOff)
@@ -161,7 +159,7 @@ BOOST_AUTO_TEST_CASE(CarCanNotSwitchGearWithBackOnForwardWhileSpeedNoZero)
 	BOOST_CHECK_EQUAL(car.GetCurrentGear(), -1);
 	BOOST_CHECK(!car.TurnOffEngine());
 	BOOST_CHECK(car.SetGear(0));
-	BOOST_CHECK(!car.TurnOffEngine());
+	BOOST_CHECK(car.TurnOffEngine());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
